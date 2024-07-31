@@ -1,0 +1,19 @@
+{
+    "config": {
+        "usb_speed": {
+            "help": "USE_USB_OTG_FS or USE_USB_OTG_HS or USE_USB_HS_IN_FS",
+            "value": "USE_USB_OTG_FS"
+        }
+    },
+"requires": ["bare-metal", "events", "drivers-usb", "spif-driver"],       
+    "target_overrides": {
+        "*": {
+            "target.printf_lib": "std",
+            "platform.minimal-printf-enable-floating-point": true,
+            "platform.minimal-printf-set-floating-point-max-decimals": 2,
+            "target.device_has_add": ["USBDEVICE"],
+            "target.components_add": ["I2CEE", "SPIF"],
+            "target.lse_available": 0
+        }
+    }
+}
